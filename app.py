@@ -16,7 +16,7 @@ SERVICE_ACCOUNT_JSON = st.secrets["SERVICE_ACCOUNT_JSON"]
 
 # creds_dict = json.loads(SERVICE_ACCOUNT_JSON)
 
-creds = Credentials.from_service_account_info(creds_dict, scopes=[
+creds = Credentials.from_service_account_info(SERVICE_ACCOUNT_JSON, scopes=[
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive",
 ])
