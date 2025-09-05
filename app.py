@@ -19,8 +19,10 @@ if not SERVICE_ACCOUNT_JSON:
     st.stop()
 
 try:
-    # Decode escaped characters such as \n properly before JSON parsing
-    fixed_json_str = SERVICE_ACCOUNT_JSON.encode('utf-8').decode('unicode_escape')
+    # Replace literal backslash followed by n (\n) to an actual newline character
+    fixed_json_str = SERVICE_ACCOUNT_JSON.replace("\\n", "\n")
+    # If there are other escape issues, you can also decode unicode escapes if needed:
+    # fixed_json_str = fixed_json_str.encode('utf-8').decode('unicode_escape')
     creds_dict = json.loads(fixed_json_str)
 except json.JSONDecodeError as e:
     st.error(f"Failed to decode SERVICE_ACCOUNT_JSON: {e}")
