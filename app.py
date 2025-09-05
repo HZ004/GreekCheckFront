@@ -20,7 +20,7 @@ if not SERVICE_ACCOUNT_JSON:
 
 try:
     # Replace literal backslash followed by n (\n) to an actual newline character
-    fixed_json_str = SERVICE_ACCOUNT_JSON.replace("\\n", "\n")
+    fixed_json_str = SERVICE_ACCOUNT_JSON.replace("\n", "\\n")
     # If there are other escape issues, you can also decode unicode escapes if needed:
     # fixed_json_str = fixed_json_str.encode('utf-8').decode('unicode_escape')
     creds_dict = json.loads(fixed_json_str)
