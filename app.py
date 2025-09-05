@@ -14,14 +14,14 @@ st.title("Upstox Live Options Greeks Dashboard")
 
 # Google Sheets Authentication using SERVICE_ACCOUNT_JSON as environment variable
 SERVICE_ACCOUNT_JSON = os.getenv("SERVICE_ACCOUNT_JSON")
-st.text(f"SERVICE_ACCOUNT_JSON raw:\n{SERVICE_ACCOUNT_JSON}")
+raw = SERVICE_ACCOUNT_JSON.encode("utf-8").decode("unicode_escape")
 
 
 if not SERVICE_ACCOUNT_JSON:
     st.error("SERVICE_ACCOUNT_JSON environment variable not set")
     st.stop()
 
-creds_dict = json.loads(SERVICE_ACCOUNT_JSON.strip())
+creds_dict = json.loads(raw)
 
 creds = Credentials.from_service_account_info(creds_dict, scopes=[
     "https://www.googleapis.com/auth/spreadsheets",
